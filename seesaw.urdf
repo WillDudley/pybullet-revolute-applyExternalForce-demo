@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<robot name="physics">
+
+    <link name="seesaw">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0.1"/>
+            <mass value="0.01"/>
+            <inertia ixx=".1" ixy="0" ixz="0" iyy=".1" iyz="0" izz=".1"/>
+        </inertial>
+
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="1 .25 .01"/>
+            </geometry>
+            <material name="black">
+                <color rgba=".2 .2 .2 1"/>
+                <specular rgb="11 1 1"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="1 .25 .01"/>
+            </geometry>
+        </collision>
+
+    </link>
+
+
+    <link name="origin">
+        <inertial>
+            <mass value="0"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+
+    <joint name="rot_y" type="revolute">
+        <axis xyz="0 1 0"/>
+        <origin xyz="0.0 0.0 0"/>
+        <parent link="origin"/>
+        <child link="seesaw"/>
+        <limit velocity="5"/>  <!--http://wiki.ros.org/urdf/XML/joint-->
+    </joint>
+
+
+</robot>
